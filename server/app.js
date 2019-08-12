@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const bookSchema = require('./schema/schema');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 // connect to mongodb database
 mongoose.connect('mongodb://localhost:27017/graphql-books', {
