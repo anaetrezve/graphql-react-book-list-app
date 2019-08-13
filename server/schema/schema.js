@@ -20,8 +20,8 @@ const BookType = new GraphQLObjectType({
     genre: { type: GraphQLString },
     author: {
       // eslint-disable-next-line
-      type: new GraphQLList(AuthorType),
-      resolve: (parent, args) => Author.find({ _id: parent.authorId }),
+      type: AuthorType,
+      resolve: (parent, args) => Author.findById(parent.authorId),
     },
   }),
 });

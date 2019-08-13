@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { getBooksQuery } from '../queries/queries';
 
+import BookDetails from './BookDetails';
+
 class BookList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: null,
+    };
+  }
+
   displayBooks() {
     // eslint-disable-next-line
     const { loading, books } = this.props.data;
@@ -10,13 +19,15 @@ class BookList extends Component {
       return <h3>Loding books...</h3>;
     }
     // eslint-disable-next-line
-    return books.map(book => <li key={book.id}>{book.name}</li>);
+    return books.map(book => <li onClick={e => this.setState({id: book.id})} key={book.id}>{book.name}</li>);
   }
 
   render() {
+    const { id } = this.state;
     return (
       <div>
-        <ul className="book-lists">{this.displayBooks()}</ul>
+        <ul id="book-list">{this.displayBooks()}</ul>
+        <BookDetails bookId={id} />
       </div>
     );
   }
